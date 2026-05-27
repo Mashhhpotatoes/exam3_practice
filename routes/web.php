@@ -1,7 +1,11 @@
 <?php
 
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\employeecontroller;
+
+
 
 
 
@@ -18,20 +22,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
     
-    Route::get('employee', [App\Http\Controllers\employeecontroller::class, 'index']);
-    Route::post('employee', [App\Http\Controllers\employeecontroller::class, 'index']);
-    Route::('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
-    Route::get('employee', [\App\Http\Controllers\employeecontroller::class, 'index']);
-    Route::('employee/create', [App\Http\Controllers\employeecontroller::class, 'create']);
-    Route::('employee', [App\Http\Controllers\employeecontroller::class, 'store']);
-    // Route::get('employee/{id}/edit', [App\Http\Controllers\employeecontroller::class, 'edit']);
-    // Route::put('employee/{id}/edit', [App\Http\Controllers\employeecontroller::class, 'update']);
-    // Route::get('employee/{id}/delete', [App\Http\Controllers\employeecontroller::class, 'delete']);
-
+    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     
-
-
-
+    Route::get('studentmngt', [\App\Http\Controllers\Studentcontroller::class, 'index'])->name('studentmngt.index');
+    Route::get('studentmngt/create', [\App\Http\Controllers\Studentcontroller::class, 'create'])->name('studentmngt.create');
+    Route::post('studentmngt', [\App\Http\Controllers\Studentcontroller::class, 'store'])->name('studentmngt.store');
+    Route::get('studentmngt/{id}/edit', [\App\Http\Controllers\Studentcontroller::class, 'edit'])->name('studentmngt.edit');
+    Route::put('studentmngt/{id}/edit', [\App\Http\Controllers\Studentcontroller::class, 'update'])->name('studentmngt.update');
+    Route::get('studentmngt/{id}/delete', [\App\Http\Controllers\Studentcontroller::class, 'destroy'])->name('studentmngt.destroy');
+    
 
 
 
